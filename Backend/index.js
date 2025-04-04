@@ -50,7 +50,9 @@
 // checking the code for 3/14/2025 improved version
 
 require("dotenv").config();  // Load .env file
-
+// import express, { json } from "express";
+const express = require("express");
+const { json } = require("express");
 // Debugging: Print environment variables to check if they are loaded
 console.log("Checking .env file...");
 console.log("PORT:", process.env.PORT);
@@ -63,14 +65,13 @@ console.log("MONGO_URL:", process.env.MONGO_URL);
 
 
 
-import express, { json } from "express";
 //const dotenv = require("dotenv");
 //import emailRoutes from "./routes/emailRoute.js"; 
  // Importing the email route
  const emailRoutes = require("./routes/emailRoute.js");
 
 
-dotenv.config(); // Load environment variables
+// dotenv.config(); // Load environment variables
 
 const app = express();
 
@@ -80,6 +81,10 @@ app.use(json());
 // Use the email route
 app.use("/api", emailRoutes);  // This makes "/api/send-email" available
 
+// app.use((req, res, next) => {
+//     console.log(`Received ${req.method} request for ${req.url}`);
+//     next();
+// });
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

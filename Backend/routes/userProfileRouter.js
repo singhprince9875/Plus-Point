@@ -1,9 +1,12 @@
 const express=require("express");
-// const authMiddleware = require("../middlewares/authMiddleware");
-// const authController = require("../controllers/authController");
+const authMiddleware = require("../middlewares/authMiddleware");
+
 const { isLoggedin, updateProfile } = require("../controllers/userProfileController");
+
 const userProfileRouter=express.Router();
-userProfileRouter.get('/profile',isLoggedin);
-userProfileRouter.put('/update-profile',updateProfile)
+
+userProfileRouter.get('/profile',authMiddleware,isLoggedin);
+userProfileRouter.put('/update-profile',updateProfile,authMiddleware);
 // userProfileRouter.post('/',authMiddleware, authController);
+
 module.exports=userProfileRouter;

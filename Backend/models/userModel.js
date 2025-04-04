@@ -5,7 +5,7 @@ const userSchema =  mongoose.Schema({
     type: String,
     required: [true, "Name is require"]
   },
-  pass: {
+  password: {
     type: String,
     required: [true, "Password is required"]
   },
@@ -18,18 +18,17 @@ const userSchema =  mongoose.Schema({
         return validator.isEmail(v);
       },
       message: 'Please enter a valid email'
-    },
-    role:{
-      type:String,
-      required:true,
-      enum:['admin','doctor','user'],
-      default:"user",
     }
+  },
+  role:{
+    type:String,
+    required:true,
+    enum:['admin','doctor','user'],
+    // default:"user",
   }
 });
 const userModel=mongoose.model('Hospital_Data', userSchema);
 module.exports=userModel;
-
   
 //   pass: {
 //     type: Number,

@@ -154,7 +154,7 @@ export const Footer = () => {
 
       {/* Copyright Section */}
       <div className="footer-bottom">
-        <p>&copy; 2024 Plus point. All rights reserved.</p>
+        <p>&copy; 2025 Plus point. All rights reserved.</p>
       </div>
     </footer>
   );

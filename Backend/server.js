@@ -1,11 +1,3 @@
-//implementing from chatgpt 3/15/2025
-const emailRoutes = require("./routes/emailRoute");
-
-// till here 
-// new line fro admin
-const adminRoutes = require("./routes/adminemail")
-
-
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -16,8 +8,16 @@ const main = require('./dbconnection');
 const registerRouter = require("./routes/registerRouter");
 const loginRouter = require("./routes/loginRouter");
 const consultancyRouter = require("./routes/consultancyRouter");
+const emailRoutes = require("./routes/emailRoute");
+const adminRoutes = require("./routes/adminemail");
+const userProfileRouter = require("./routes/userProfileRouter")
+const dahsboardRouter = require("./routes/dashboardRoute");
+const ambulanceRoute = require("./routes/ambulanceRoute");
 // const { main } = require("./dbConnection");  // Import main() function from dbConnection
 require('dotenv').config();
+
+// Middleware
+// const logger = require("./middlewares/log");
 
 // creating express application
 const app = express();
@@ -32,8 +32,10 @@ const APP_BE_URL = "http://localhost:3002"; // our application
 
 
 // setting up middleware
+// app.use(logger);
 app.use(cors());
 app.use(bodyParser.json());
+
 app.use(
   bodyParser.urlencoded({
     extended: false,
@@ -48,62 +50,61 @@ app.get("/", (req, res) => {
 app.use('/Consultancy', consultancyRouter);
 app.use("/Register", registerRouter);
 app.use("/Login", loginRouter);
-// chatgpt code from 3/15/2025
-app.use("/api",emailRoutes);
+app.use("/api", emailRoutes);
+app.use("/admin",adminRoutes);
+app.use("/user",userProfileRouter);
+app.use("/api",dahsboardRouter);
+app.use("/api/ambulance", ambulanceRoute);
 
-// for adminemail
-
-app.use("/admin",adminRoutes)
-
-const users = {
-  'email@user1.com': {
-    name: 'User Name',
-    email: 'email@user1.com',
-    phone: '9999999999',
-  },
-};
+// const users = {
+//   'email@user1.com': {
+//     name: 'User Name',
+//     email: 'email@user1.com',
+//     phone: '9999999999',
+//   },
+// };
 
 // JWT token Secret Key Here 
 
 
-let user = null;
-const verifyToken = async (req, res, next) => {
-  const token = req.headers['authorization']?.split(' ')[1];
-  if (!token) return res.status(403).json({ message: 'No token provided.' });
+// let user = null;
+// const verifyToken = async (req, res, next) => {
+//   const token = req.headers['authorization']?.split(' ')[1];
+//   if (!token) return res.status(403).json({ message: 'No token provided.' });
 
-  try {
-    const decoded = jwt.decode(token, process.env.JWT_SECRETKEY);
-    console.log(`ye h decoded token : , ${JSON.stringify(decoded)}`);
-    user = await userModel.findById(decoded.id); // Use the decoded userId
-    console.log(`User hu m: , ${JSON.stringify(user)}`)
-    if (!user) {
-      return res.status(404).send({ message: "No active user found, Kindly Login first", success: false });
-    }
-    // res.status(200).send('User found');
-    res.status(200).send(user);
-    // res.user=user;
-    // req.user = user;
-    // next();
-  } catch (err) {
-    console.error("Error fetching user data:", err);
-    return res.status(500).send({ message: `Auth error: ${err.message}`, success: false });
-  }
-};
+//   try {
+//     const decoded = jwt.decode(token, process.env.JWT_SECRETKEY);
+//     console.log(`ye h decoded token : , ${JSON.stringify(decoded)}`);
+//     user = await userModel.findById(decoded.id); // Use the decoded userId
+//     console.log(`User hu m: , ${JSON.stringify(user)}`)
+//     if (!user) {
+//       return res.status(404).send({ message: "No active user found, Kindly Login first", success: false });
+//     }
+//     // res.status(200).send('User found');
+//     res.status(200).send(user);
+//     // res.user=user;
+//     // req.user = user;
+//     // next();
+//   } catch (err) {
+//     console.error("Error fetching user data:", err);
+//     return res.status(500).send({ message: `Auth error: ${err.message}`, success: false });
+//   }
+// };
 
-// Route to get user info after token verification
-app.get('/user', verifyToken, (req, res) => {
-  console.log("this is user", user);
+// // Route to get user info after token verification
+// app.get('/user', verifyToken, (req, res) => {
+//   console.log("this is user", user);
 
-  // user = req.user;  // The user data is available here after passing through the verifyToken middleware
-  res.status(200).json({
-    success: true,
-    data: {
-      name: user.name,
-      email: user.email,
-      role: user.role,  // Include other relevant fields
-    }
-  });
-});
+//   // user = req.user;  // The user data is available here after passing through the verifyToken middleware
+//   res.status(200).json({
+//     success: true,
+//     data: {
+//       name: user.name,
+//       email: user.email,
+//       role: user.role,  // Include other relevant fields
+//     }
+//   });
+// });
 
 
 

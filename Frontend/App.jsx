@@ -11,6 +11,9 @@ import './App.css';
 import { useSelector } from 'react-redux';
 import Spinner from './src/Components/Spinner';
 import FrontPage from './src/Components/FrontPage';
+import AdminRoute from './src/Pages/AdminRoute'; // Import AdminRoute
+import Ambulance from "./src/pages/Ambulance"; // ✅ correct
+
 // import UserProfile from './src/Components/userProfile';
 
 import Shop from './src/Components/Shop';
@@ -42,6 +45,10 @@ import Senior from './src/Pages/Senior';
 import PreConception from './src/Pages/PreConception';
 import Cancer from './src/Pages/Cancer';
 import GeneralHealth from './src/Pages/GeneralHealth';
+import Dashboard from './src/Pages/Dashboard';
+import Chatbot from './src/Components/ChatBot'
+import './src/Components/Chatbot.css'
+// import "."
 
 
 function App() {
@@ -53,6 +60,7 @@ function App() {
       {loading ? (
         <Spinner />
       ) : (
+        <>
         <Routes>
           <Route path='/' element={token ? <FrontPage /> : <Navigate to="/Login" />} />
 
@@ -62,6 +70,8 @@ function App() {
           <Route path='/Register' element={token ? <Navigate to="/" /> : <Register />} />
           <Route path="/room/:roomId" element={<RoomPage/>} />
           <Route path="/videoCall" element={<HomePage/>} />
+
+          <Route path="/ambulance" element={<Ambulance />} />
           
 
           
@@ -85,7 +95,7 @@ function App() {
           <Route path='/Logout' element={token ? <LogOut /> : <Navigate to="/Login" />} />
 
           {/* Pages */}
-          <Route path="/dermatology" element={<Dermatology />} />
+        <Route path="/dermatology" element={<Dermatology />} />
         <Route path="/cardiology" element={<Cardiology />} />
         <Route path="/orthopedics" element={<Orthopedics />} />
         <Route path="/pediatrics" element={<Pediatrics />} />
@@ -108,8 +118,25 @@ function App() {
         <Route path='/healthcheck/P' element={<PreConception/>}/>
         <Route path='/healthcheck/C' element={<Cancer/>}/>
         <Route path='/healthcheck/G' element={<GeneralHealth/>}/>
+        
 
+        <Route path='/dashboard' element={
+        <AdminRoute>
+        <Dashboard/>
+       </AdminRoute>
+         }/> 
+
+
+
+
+
+
+        <Route path='/chatbot' element={<Chatbot/>}/> 
         </Routes>
+        <div className="overlay">
+          <Chatbot/>
+        </div>
+        </>
       )}
     </BrowserRouter>
   );

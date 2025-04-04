@@ -108,7 +108,7 @@ export const Register = () => {
   const dispatch=useDispatch();
   const [details, setDetails] = useState({
     name: "",
-    pass: "",
+    password: "",
     email: "",
     role: "",
   });
@@ -146,6 +146,8 @@ export const Register = () => {
     } catch (err) {
       console.log("Something went wrong while registering:", err);
       message.error("Registration failed. Please try again."); // Show error 
+    }finally{
+      dispatch(hideLoading());
     }
   };
 
@@ -171,8 +173,8 @@ export const Register = () => {
               <label>Password</label>
               <input
                 type="password"
-                id="pass"
-                name="pass"
+                id="password"
+                name="password"
                 value={details.pass}
                 onChange={handleChange}
                 required
@@ -199,7 +201,7 @@ export const Register = () => {
                 >
                   < option value="">Select</option>
                   < option value="doctor">Doctor</option>
-                  < option value="ddmin">Admin</option>
+                  < option value="admin">Admin</option>
                   < option value="user">User</option>
                 </select>
               </div>

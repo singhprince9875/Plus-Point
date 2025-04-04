@@ -99,7 +99,7 @@ import { showLoading,hideLoading } from "../redux/features/alertSlice";
 export const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
-    pass: "",
+    password: "",
   });
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -115,6 +115,7 @@ const dispatch=useDispatch();
 
     try {
       dispatch(showLoading());
+      console.log(formData)
       const resp = await axios.post('http://localhost:4000/Login', formData);
       dispatch(hideLoading());
       if (resp.data.success) {
@@ -157,8 +158,8 @@ const dispatch=useDispatch();
               <label htmlFor="pass">Password</label>
               <input
                 type="password"
-                id="pass"
-                name="pass"
+                id="password"
+                name="password"
                 value={formData.pass}
                 onChange={handleChange}
                 required

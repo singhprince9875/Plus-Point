@@ -302,3 +302,15 @@ body {
 }
 
 
+
+.btn-ambulance {
+  background-color: #e63946;
+  color: white;
+  font-weight: bold;
+}
+.btn-ambulance:hover {
+  background-color: #d62828;
+}
+
+
+

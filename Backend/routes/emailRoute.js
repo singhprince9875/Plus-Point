@@ -35,14 +35,26 @@
 // code form chatgpt for email routes.js with 3/13/2025
 
 
+// const express = require("express");
+// const sendEmail = require("../controllers/emailController"); // Correct path
+
+// const router = express.Router();
+
+// // Define the email sending route
+// router.post("/send-email", sendEmail);
+
+// module.exports = router;
+
+
 const express = require("express");
 const sendEmail = require("../controllers/emailController"); // Correct path
+const authMiddleware = require("../middlewares/authMiddleware");
+const authorizeRole = require("../middlewares/authorize");
 
 const router = express.Router();
 
 // Define the email sending route
-router.post("/send-email", sendEmail);
+router.post("/send-email", authMiddleware,sendEmail);
 
 module.exports = router;
-
 

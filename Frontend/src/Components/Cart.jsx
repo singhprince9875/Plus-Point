@@ -20,6 +20,9 @@ function Cart() {
     fetch(`${BASE_URL}/api/cart/${userId}`)
       .then((response) => response.json())
       .then((data) => {
+        console.log("fetched card data",data);
+        
+console.log("First item sample:", data.items[0]);
         setCartItems(data.items || []);
         setLoading(false);
         calculateTotalPrice(data.items || []);

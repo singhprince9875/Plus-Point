@@ -4,8 +4,7 @@
     right: 20px;
     z-index: 9999;
     /* Adjust size and other styles as required */
-    width: 320px;
-    height: 450px;
+    
 }
 #bp-web-widget {
     position: fixed !important;

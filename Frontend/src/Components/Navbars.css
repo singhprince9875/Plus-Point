@@ -304,13 +304,20 @@ body {
 
 
 .btn-ambulance {
-  background-color: #e63946;
-  color: white;
-  font-weight: bold;
+  color: red;
+  background-color: white;
+  border: 2px solid red;
+  border-radius: 50%;
+  padding: 10px;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 .btn-ambulance:hover {
-  background-color: #d62828;
+  background-color: red;
+  color: white;
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-
-
-

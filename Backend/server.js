@@ -54,7 +54,7 @@ app.use("/api", emailRoutes);
 app.use("/admin",adminRoutes);
 app.use("/user",userProfileRouter);
 app.use("/api",dahsboardRouter);
-app.use("/api/ambulance", ambulanceRoute);
+app.use("/ambulance", ambulanceRoute);
 
 // const users = {
 //   'email@user1.com': {

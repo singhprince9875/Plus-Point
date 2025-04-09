@@ -91,6 +91,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import "./Navbars.css";
 import Logo from '../assets/doctors/Logo.png'; // Adjust the path to your logo
+import { FaAmbulance } from 'react-icons/fa'; // Add this import at the top
+
 
 export const Navbars = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -116,7 +118,10 @@ export const Navbars = () => {
         <Link className="btn" to="/healthcheck">Get Health Checkups</Link>
 
         {/* 🚑 Ambulance Button */}
-        <Link className="btn btn-ambulance" to="/ambulance">🚑 Ambulance</Link>
+        <Link className="btn btn-ambulance" to="/ambulance" title="Ambulance">
+  <FaAmbulance size={24} />
+</Link>
+
 
         <Link className="btn" to="/dashboard">Dashboard</Link>
 

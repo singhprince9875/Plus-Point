@@ -119,17 +119,18 @@
 // };
 
 // export default Chatbot;
-   
+
 
 
 // from chatgpt 
 
 
 import React, { useState } from "react";
-import axios from "axios";
+import { GoogleGenAI } from "@google/genai";
 import { FaRobot, FaTimes } from "react-icons/fa"; // Importing icons for chatbot
 
 const API_KEY = "AIzaSyBw2BfD_-gXTGcQqnIBSbcwXy6kz1fXCvw";
+const ai = new GoogleGenAI({ apiKey: "AIzaSyBw2BfD_-gXTGcQqnIBSbcwXy6kz1fXCvw" });
 
 const Chatbot = () => {
   const [messages, setMessages] = useState([]);
@@ -144,16 +145,17 @@ const Chatbot = () => {
     setMessages([...messages, userMessage]);
 
     try {
-      const response = await axios.post(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`,
-        {
-          contents: [{ parts: [{ text: input }] }],
-        }
-      );
+      const response = await ai.models.generateContent({
+        model: "gemini-2.0-flash",
+        contents: [{ parts: [{ text: input }] }],
+        config: {
+          systemInstruction: "You are a Ai Healthcare bot limit as such limit your answers to questions related to healthcare. If you are asked any question other than that of healthcare refuse to answer them stating you can only answer questions to services related to site worded in your own way.",
+        },
+      });
 
       const botMessage = {
         role: "bot",
-        text: response.data.candidates[0]?.content.parts[0]?.text || "No response",
+        text: response.text || "No response",
       };
 
       setMessages([...messages, userMessage, botMessage]);

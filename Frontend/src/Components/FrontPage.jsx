@@ -132,6 +132,13 @@ const FrontPage = () => {
                         <p>Schedule your appointments quickly and hassle-free.</p> {/* Paragraph added */}
                     </div>
                     </Link>
+                    <Link to={"/nearby-hospitals"}>
+                    <div className="icon-card" id="book-appointment">
+                        <i className="fa fa-hospital"></i>
+                        <span>Nearest Hospital </span>
+                        <p>Visit nearest Hospital.</p> {/* Paragraph added */}
+                    </div>
+                    </Link>
                 </div>
             </div>
 

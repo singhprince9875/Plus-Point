@@ -20,6 +20,7 @@ const Checkout = () => {
   }, [cartItems]);
 
   const createCheckoutSession = async () => {
+    console.log("hello hi from stripe")
     setIsProcessing(true);
     setError(null); // Clear any previous errors
 
@@ -83,7 +84,7 @@ const Checkout = () => {
         </ul>
         <p>Total: ₹{totalPrice.toFixed(2)}</p>
       </div>
-      <button onClick={createCheckoutSession} disabled={isProcessing}>
+      <button onClick={createCheckoutSession()} disabled={isProcessing}>
         {isProcessing ? "Processing..." : "Pay with Stripe"}
       </button>
     </div>

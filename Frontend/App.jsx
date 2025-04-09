@@ -13,6 +13,7 @@ import Spinner from './src/Components/Spinner';
 import FrontPage from './src/Components/FrontPage';
 import AdminRoute from './src/Pages/AdminRoute'; // Import AdminRoute
 import Ambulance from "./src/pages/Ambulance"; // ✅ correct
+import MapView from "./src/Components/MapView"; 
 
 // import UserProfile from './src/Components/userProfile';
 
@@ -48,7 +49,11 @@ import GeneralHealth from './src/Pages/GeneralHealth';
 import Dashboard from './src/Pages/Dashboard';
 import Chatbot from './src/Components/ChatBot'
 import './src/Components/Chatbot.css'
+// import GoToMapButton from './src/Components/Gotomapbutton';
+// import GoToMapButton from './src/Components/GoToMapButton';
+// import GoToMapButton from './src/Components/GoToMapButton'; 
 // import "."
+// import MapView from './MapView';
 
 
 function App() {
@@ -122,14 +127,16 @@ function App() {
 
         <Route path='/dashboard' element={
         <AdminRoute>
-        <Dashboard/>
+          <Dashboard/>
        </AdminRoute>
          }/> 
 
 
+  
+   {/* <Route path="/nearby-hospitals" element={<GoToMapButton />} /> */}
+   <Route path="/nearby-hospitals" element={<MapView />} />
 
-
-
+     
 
         <Route path='/chatbot' element={<Chatbot/>}/> 
         </Routes>

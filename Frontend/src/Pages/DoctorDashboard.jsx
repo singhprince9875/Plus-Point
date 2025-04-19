@@ -70,7 +70,8 @@ const DoctorDashboard = () => {
                 <th className="py-2 px-4 border">Email</th>
                 <th className="py-2 px-4 border">Gender</th>
                 <th className="py-2 px-4 border">Mobile</th>
-                {/* <th className="py-2 px-4 border">Token</th> */}
+                <th className="py-2 px-4 border">Token</th>
+                <th className="py-2 px-4 border">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -88,7 +89,17 @@ const DoctorDashboard = () => {
                   <td className="py-2 px-4 border">{apt.email}</td>
                   <td className="py-2 px-4 border">{apt.gender}</td>
                   <td className="py-2 px-4 border">{apt.mobile}</td>
-                  {/* <td className="py-2 px-4 border">{apt.token}</td> */}
+                  <td className="py-2 px-4 border">{apt.token}</td>
+                  <td className="py-2 px-4 border">
+                    <a
+                      href={`http://localhost:5173/room/${apt.token}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-blue-500 hover:bg-blue-600 text-white py-1 px-2 rounded"
+                    >
+                      Join Call
+                    </a>
+                  </td>
                 </tr>
               ))}
             </tbody>

@@ -18,7 +18,7 @@ const HomePage = () => {
     <Navbars/>
     <div className="video-home-page">
       <div className="video-form-container">
-        <h1 className="video-form-title">Enter Room Code</h1>
+        <h1 className="video-form-title">Enter Your Token Number</h1>
         <form onSubmit={handleFormSubmit}>
           <input
             type="text"

@@ -12,7 +12,7 @@ const ConsultancyDataSchema = new mongoose.Schema({
   timing: { type: String, required: true },
   mobile: { type: String, required: true },
   email: { type: String, required: true },
-  // token : { type: String, required: true },
+  token : { type: String, required: true },
   // fee: { type: Number, required: true }
 });
 

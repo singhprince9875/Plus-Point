@@ -34,6 +34,7 @@ const Consultancy = () => {
     mobile: '',
     email: '',
     fee: '',
+    token: '',
   });
   const [error, setError] = useState('');
   const [appointment, setAppointment] = useState(false);
@@ -85,7 +86,16 @@ const Consultancy = () => {
     //   return {...prev, fee: doctor[0].fee} 
     // });
 
-    const payload = {...formData, fee: doctor[0].fee};
+    const newToken = Math.floor(1000 + Math.random() * 9000);
+    console.log("token",newToken)
+    console.log(token)
+    setToken(newToken);
+    
+    const payload = { 
+      ...formData, 
+      fee: doctor[0].fee, 
+      token: newToken 
+    };
     console.log("payload", payload);
     
     try {
@@ -98,7 +108,7 @@ const Consultancy = () => {
       }
       // console.log('Response Data:', response.data);
       setAppointment(true);
-      setToken(response.data.token);
+      // setToken(newToken);
       setError('');
     } catch (err) {
       console.log("err",err);
@@ -122,8 +132,8 @@ const Consultancy = () => {
       setDoctor(selectedDoctor);
       setAppointment(true);
       setError('');
-      const newToken = Math.floor(1000 + Math.random() * 9000);
-      setToken(newToken);
+      // const newToken = Math.floor(1000 + Math.random() * 9000);
+      // setToken(newToken);
     } else {
       setError('No doctor available for this medical issue');
       setAppointment(false);
@@ -203,6 +213,7 @@ const Consultancy = () => {
                   <option value="">Select</option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
+                  <option value="Prefer not to say">Prefer not to say</option>
                 </select>
               </div>
             </div>
